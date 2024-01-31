@@ -23,12 +23,12 @@ class OrdersListView(ListView):
 
 
 class SearchView(ListView):
-    template_name = "search_result.html"
+    template_name = "search.html"
     model = Order
     context_object_name = "list_of_all_orders"
 
     def get_queryset(self):
-        query = self.request.GET.get('q')
+        query = self.request.GET.get('q', '')
         return Order.objects.filter(
             Q(customer__first_name__icontains=query) | Q(customer__last_name__icontains=query)
         ).order_by('order_date').reverse()
