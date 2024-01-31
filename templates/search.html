@@ -1,0 +1,4 @@
+<form action="{% url 'search_result' %}" method="GET">
+    {% csrf_token %}
+    <input name="q" type="text" placeholder="Введите имя или фамилию...">
+</form>
