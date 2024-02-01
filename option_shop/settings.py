@@ -14,11 +14,11 @@ import environ
 from pathlib import Path
 
 env = environ.Env(DEBUG=(bool, False))
-environ.Env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+environ.Env.read_env()
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
@@ -76,12 +76,6 @@ WSGI_APPLICATION = 'option_shop.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
 DATABASES = {
 
     # 'default': {
@@ -93,16 +87,21 @@ DATABASES = {
     #     'PORT': '3306',
     # },
 
+    #     'default': {
+    #         'ENGINE': 'django.db.backends.sqlite3',
+    #         'NAME': BASE_DIR / 'db.sqlite3',
+
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': env('NAME'),
-        'USER': env('USER'),
+        'USER': env('ADMIN_USER'),
         'PASSWORD': env('PASSWORD'),
         'HOST': env('HOST'),
         'PORT': env('PORT'),
     }
-
 }
+
+print(DATABASES)
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
