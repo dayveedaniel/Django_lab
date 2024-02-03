@@ -29,24 +29,27 @@
     <title>Project</title>
 </head>
 <body>
-<main class='login form'>
-    <h2> Login </h2>
-    <section>
-        <form method='POST'>
-            {% csrf_token %}
-            <div class='login'>
+    <div class="auth">
 
-                <label for="{{ form.username.id_for_label }}">Username:</label>
-                {{ form.username }}
-
-                <label for="{{ form.password.id_for_label }}">Password:</label>
-                {{ form.password }}
-
-                <button type="submit">Login</button>
-            </div>
-        </form>
-    </section>
-</main>
+        <main class='login form'>
+            <h2> Login </h2>
+            <section>
+                <form method='POST'>
+                    {% csrf_token %}
+                    <div class='login'>
+        
+                        <label for="{{ form.username.id_for_label }}">Username:</label>
+                        {{ form.username }}
+        
+                        <label for="{{ form.password.id_for_label }}">Password:</label>
+                        {{ form.password }}
+        
+                        <button type="submit">Login</button>
+                    </div>
+                </form>
+            </section>
+        </main>
+    </div>
 </body>
 
 </html>
