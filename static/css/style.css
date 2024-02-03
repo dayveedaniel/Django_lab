@@ -1,19 +1,19 @@
 main {
   display: flex;
-  align: center;
+  align-items: center;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: #eee;
   margin: 0 auto;
-  padding: 2rem 0rem;
+  padding: 1rem 0rem;
   width: 40%;
   height: 100%;
 }
 
 h2 {
   font-family: montserrat, sans;
-  margin-bottom: 3rem;
+ 
 }
 label {
   font-size: 1.2rem;
