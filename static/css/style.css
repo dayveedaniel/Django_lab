@@ -1,29 +1,36 @@
-.auth{
-  height: 100svh;
-  display: flex;
-  align-items: center;
-  
-}
-
 main {
-  display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
   background-color: #eee;
   margin: 0 auto;
-  padding: 1rem 0rem;
+  padding: 2rem 0rem;
   width: 40%;
-  height: 100%;
+  border-radius: 32px
+}
+
+section{
+  width: 80%;
 }
 
 h2 {
   font-family: montserrat, sans;
- 
+  text-align: center;
+}
+
+h1 {
+  font-family: montserrat, sans;
+  text-align: center;
+  padding: 5rem 0rem 1rem;
 }
 label {
   font-size: 1.2rem;
+}
+
+.auth{
+  height: 50svh;
+  display: flex;
+  align-items: center;
 }
 
 input {
@@ -40,6 +47,8 @@ input {
 button {
   margin-top: 2rem;
   height: 40px;
+  width: 70%;
+  align-self: center;
   border: none;
   border-radius: 5px;
   background-color: #4287f5;
