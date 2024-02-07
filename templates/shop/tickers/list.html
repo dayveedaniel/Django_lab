@@ -1,0 +1,36 @@
+<div class="main-body">
+    <h2>Tickers</h2>
+    <table class="ticker-table">
+        <thead>
+        <tr>
+            <th></th>
+            <th class="title-name">Name</th>
+            <th>Last Price</th>
+            <th>Change</th>
+            <th>% Change</th>
+            <th>Volume</th>
+            <th>Market Cap</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for ticker in list_of_tickers %}
+        <tr class="ticker-item">
+            <td class="ticker-image"><img src="{{ ticker.image.url }}" alt="{{ ticker.name }} Image"></td>
+            <td>
+                <div class="ticker-name">{{ ticker.name }}</div>
+                <div class="ticker-full-name">{{ ticker.full_name }}</div>
+            </td>
+            <td>{{ ticker.last_price }}</td>
+            <td class="ticker-change {% if ticker.percent_change < 0 %}negative{% else %}positive{% endif %}">
+                {{ ticker.change }}
+            </td>
+            <td class="ticker-percent-change {% if ticker.percent_change < 0 %}negative{% else %}positive{% endif %}">
+                {{ ticker.percent_change }}
+            </td>
+            <td>{{ ticker.volume }}</td>
+            <td>{{ ticker.market_cap }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>

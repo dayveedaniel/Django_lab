@@ -1,21 +1,54 @@
 <!DOCTYPE html>
-{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>My Shop</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Options - Home</title>
+    <link rel="stylesheet" href="../../static/css/home.css">
 </head>
+
 <body>
-{% if user.is_authenticated %}
-<!--{% include 'shop/tickers/list.html' %}-->
-<h1>Привет, {{ user.username }} ! Это мой магазин!</h1>
-<a href="{% url 'logout' %}"><h4> Logout </h4></a>
-<img src="{% static 'images/me.jpeg' %}" alt="Django">
-{% else %}
-<p>Вы не вошли на сайт</p>
-<a href="{% url 'login' %}">Войти</a>
-{% endif %}
+<header>
+    <h1>AI Options</h1>
+    <div class="search-bar">
+        <form action="{% url 'search' %}" method="GET">
+            {% csrf_token %}
+            <div class="search-container">
+                <input type="text" name="q" placeholder="Search...">
+                <button type="submit" class="search-icon-btn"><img src="../../static/icons/search.png" alt="Search">
+                </button>
+            </div>
+        </form>
+    </div>
+    <h5>Cart</h5>
+    {% comment %}
+    <a href="{% url 'cart' %}">
+        Cart <span id="cart-count">{{ cart_count }}</span>
+    </a>
+    {% endcomment %}
+    {% if user.is_authenticated %}
+    <a href="{% url 'logout' %}">Logout</a>
+    {% else %}
+    <a href="{% url 'login' %}">Login</a>
+    {% endif %}
+</header>
+
+{% block content %}
+<div class="container">
+    <div class="content-wrapper">
+        <!-- Sidebar for Filters -->
+        {% block filter %}
+        {% include "shop/tickers/filter.html" %}
+        {% endblock %}
+
+        <!-- Main Body for Tickers -->
+        {% block list %}
+        {% include "shop/tickers/list.html" %}
+        {% endblock %}
+    </div>
+</div>
+{% endblock %}
+
+
 </body>
-<script src="{% static 'js/script.js' %}"></script>
 </html>
