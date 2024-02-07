@@ -103,6 +103,7 @@ header a:hover {
 
 .ticker-item {
     margin-bottom: 20px;
+    cursor: pointer;
 }
 
 .ticker-item:hover {

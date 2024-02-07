@@ -1,0 +1,73 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+.ticker-details-container {
+    margin: 10px auto;
+    padding: 20px;
+}
+
+.ticker-header {
+    margin-bottom: 20px;
+}
+
+.ticker-header h2 {
+    font-size: 24px;
+    margin: 0;
+}
+
+.ticker-header p {
+    margin: 5px 0;
+    color: #666;
+}
+
+.current-price {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.change {
+    color: #008000; /* Green for positive change */
+}
+
+.ticker-description {
+    margin-bottom: 20px;
+}
+
+.ticker-filters,
+.ticker-options {
+    margin-bottom: 20px;
+}
+
+.ticker-filters h3,
+.ticker-options h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+label {
+    margin-right: 10px;
+}
+
+select {
+    padding: 5px;
+    font-size: 14px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    padding: 10px;
+    border: 1px solid #ddd;
+    margin-bottom: 5px;
+    border-radius: 4px;
+    background-color: #fff;
+}
+
+/* Add more styles as needed */

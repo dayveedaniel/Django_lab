@@ -1,6 +1,3 @@
-from django.db.models import Q
-from django.shortcuts import render, get_object_or_404
-from django.views.generic import TemplateView
 from django.views.generic.list import ListView
 from shop.models import Customer, Order, Ticker, Product
 
@@ -10,6 +7,28 @@ class HomePageView(ListView):
     template_name = 'home.html'
     model = Ticker
     context_object_name = "list_of_tickers"
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        search_query = self.request.GET.get('search_query')
+
+        if search_query:
+            queryset = queryset.filter(name__icontains=search_query)
+
+        return queryset
+
+
+class ProductsListView(ListView):
+    template_name = 'shop/tickers/details.html'
+    model = Product
+    context_object_name = "list_of_products"
+    slug_url_kwarg = 'slug'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Retrieve related options for the current ticker
+        context['tickers'] = self.object.options.all()
+        return context
 
 
 class CustomersListView(ListView):
@@ -22,38 +41,3 @@ class OrdersListView(ListView):
     template_name = "orders.html"
     model = Order
     context_object_name = "list_of_all_orders"
-
-
-class SearchView(ListView):
-    template_name = "search.html"
-    model = Order
-    context_object_name = "list_of_all_orders"
-
-    def get_queryset(self):
-        query = self.request.GET.get('q', '')
-        return Order.objects.filter(
-            Q(customer__first_name__icontains=query) | Q(customer__last_name__icontains=query)
-        ).order_by('order_date').reverse()
-
-
-def product_list(request, category_slug=None):
-    category = None
-    categories = Ticker.objects.all()
-    products = Product.objects.all()
-    if category_slug:
-        category = get_object_or_404(Ticker, slug=category_slug)
-        products = products.filter(category=category)
-    return render(request,
-                  'shop/tickers/list.html',
-                  {'category': category,
-                   'categories': categories,
-                   'products': products})
-
-
-def product_detail(request, id, slug):
-    product = get_object_or_404(Product,
-                                id=id,
-                                slug=slug,)
-    return render(request,
-                  'shop/tickers/detail.html',
-                  {'product': product})

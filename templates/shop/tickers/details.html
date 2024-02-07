@@ -1,14 +1,41 @@
-<!--{% extends "shop/base.html" %}-->
-<!--{% load static %}-->
-<!--{% block title %}-->
-<!--    {% if category %}{{ category.title }}{% else %}Products{% endif %}-->
-<!--{% endblock %}-->
-<!--{% block content %}-->
-<!--    <div class="product-detail">-->
-<!--        <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}">-->
-<!--        <h1>{{ product.name }}</h1>-->
-<!--        <h2><a href="{{ product.category.get_absolute_url }}">{{ product.category }}</a></h2>-->
-<!--        <p class="price">${{ product.price }}</p>-->
-<!--        {{ product.description|linebreaks }}-->
-<!--    </div>-->
-<!--{% endblock %}-->
+{% extends "home.html" %}
+
+{% block search %}
+{% endblock %}
+
+{% block content %}
+<div class="ticker-details-container">
+    <div class="ticker-header">
+        <h2>{{ ticker.full_name }} ({{ ticker.name }})</h2>
+        <p>Company Rating: {{ ticker.rating }}</p>
+        <p class="current-price">{{ ticker.current_price }} <span class="change">+{{ ticker.change }} ({{ ticker.percent_change }}%)</span></p>
+    </div>
+
+    <div class="ticker-description">
+        <p>{{ ticker.description }}</p>
+    </div>
+
+    <div class="ticker-filters">
+        <h3>Options Filters</h3>
+        <!-- Add filter components as needed -->
+        <!-- Example filter component: -->
+        <label for="filter-by-type">Filter by Type:</label>
+        <select id="filter-by-type">
+            <option value="option1">Option 1</option>
+            <option value="option2">Option 2</option>
+            <!-- Add more options as needed -->
+        </select>
+    </div>
+
+    <div class="ticker-options">
+        <h3>Options List</h3>
+        <ul>
+            <!-- Example option item: -->
+            <li>Option 1</li>
+            <li>Option 2</li>
+            <!-- Add more option items as needed -->
+        </ul>
+    </div>
+</div>
+
+{% endblock %}

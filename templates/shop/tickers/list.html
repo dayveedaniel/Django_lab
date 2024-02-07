@@ -1,5 +1,17 @@
 <div class="main-body">
-    <h2>Tickers</h2>
+    <h2>
+        {% if request.GET.search_query %}
+        {% if list_of_tickers %}
+        Ticker search results for "{{ request.GET.search_query }}"
+        {% else %}
+        No Tickers found for "{{ request.GET.search_query }}"
+        <img src="../../static/images/empty_result.gif" alt="Empty Result GIF" style="padding-top: 20px;">
+        {% endif %}
+        {% else %}
+        Tickers
+        {% endif %}
+    </h2>
+    {% if list_of_tickers %}
     <table class="ticker-table">
         <thead>
         <tr>
@@ -14,7 +26,7 @@
         </thead>
         <tbody>
         {% for ticker in list_of_tickers %}
-        <tr class="ticker-item">
+        <tr class="ticker-item" onclick="window.location='{% url 'details' slug=ticker.slug %}';">
             <td class="ticker-image"><img src="{{ ticker.image.url }}" alt="{{ ticker.name }} Image"></td>
             <td>
                 <div class="ticker-name">{{ ticker.name }}</div>
@@ -33,4 +45,5 @@
         {% endfor %}
         </tbody>
     </table>
+    {% endif %}
 </div>

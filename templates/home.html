@@ -5,21 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Options - Home</title>
     <link rel="stylesheet" href="../../static/css/home.css">
+    <link rel="stylesheet" href="../../static/css/ticker_details.css">
 </head>
 
 <body>
 <header>
     <h1>AI Options</h1>
+    {% block search %}
     <div class="search-bar">
-        <form action="{% url 'search' %}" method="GET">
+        <form action="{% url 'home' %}" method="GET">
             {% csrf_token %}
             <div class="search-container">
-                <input type="text" name="q" placeholder="Search...">
+                <input type="text" name="search_query" placeholder="Search Tickers..."
+                       value="{{ request.GET.search_query }}">
                 <button type="submit" class="search-icon-btn"><img src="../../static/icons/search.png" alt="Search">
                 </button>
             </div>
         </form>
     </div>
+    {% endblock %}
+
     <h5>Cart</h5>
     {% comment %}
     <a href="{% url 'cart' %}">
@@ -48,7 +53,6 @@
     </div>
 </div>
 {% endblock %}
-
 
 </body>
 </html>
