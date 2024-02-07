@@ -7,12 +7,15 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
 </head>
 <body>
-  {% if user.is_authenticated %}
-    <h1>Привет, {{ user.username }} ! Это мой магазин!</h1>
-  {% else %}
-    <p>Вы не вошли на сайт</p>
-    <a href="{% url 'login' %}">Войти</a>
-  {% endif %}
+{% if user.is_authenticated %}
+<!--{% include 'shop/tickers/list.html' %}-->
+<h1>Привет, {{ user.username }} ! Это мой магазин!</h1>
+<a href="{% url 'logout' %}"><h4> Logout </h4></a>
+<img src="{% static 'images/me.jpeg' %}" alt="Django">
+{% else %}
+<p>Вы не вошли на сайт</p>
+<a href="{% url 'login' %}">Войти</a>
+{% endif %}
 </body>
 <script src="{% static 'js/script.js' %}"></script>
 </html>
