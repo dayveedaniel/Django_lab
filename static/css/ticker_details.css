@@ -37,12 +37,12 @@ body {
 }
 
 .ticker-filters,
-.ticker-options {
+.options-table {
     margin-bottom: 20px;
 }
 
 .ticker-filters h3,
-.ticker-options h3 {
+.options-table h3 {
     font-size: 20px;
     margin-bottom: 10px;
 }

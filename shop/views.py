@@ -1,3 +1,4 @@
+from django.shortcuts import get_object_or_404, render
 from django.views.generic.list import ListView
 from shop.models import Customer, Order, Ticker, Product
 
@@ -18,17 +19,11 @@ class HomePageView(ListView):
         return queryset
 
 
-class ProductsListView(ListView):
-    template_name = 'shop/tickers/details.html'
-    model = Product
-    context_object_name = "list_of_products"
-    slug_url_kwarg = 'slug'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        # Retrieve related options for the current ticker
-        context['tickers'] = self.object.options.all()
-        return context
+def ticker_details(request, slug):
+    ticker = get_object_or_404(Ticker, slug=slug)
+    options = ticker.tickers.all()
+    context = {'ticker': ticker, 'options': options}
+    return render(request, 'shop/tickers/details.html', context)
 
 
 class CustomersListView(ListView):
