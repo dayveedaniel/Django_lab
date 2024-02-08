@@ -29,7 +29,7 @@
     </div>
 
     <h3>Options List</h3>
-    <table class="options-table">
+    <table class="ticker-table">
         <thead>
         <tr>
             <th></th>
@@ -47,7 +47,7 @@
         <tbody>
         {% for option in options %}
         <tr class="ticker-item">
-            <td class="ticker-image">{{ option.option_type }}</td>
+            <td class="option-type">{{ option.option_type }}</td>
             <td class="ticker-name">{{ option.name }}</td>
             <td>{{ option.strike }}</td>
             <td>{{ option.open }}</td>
