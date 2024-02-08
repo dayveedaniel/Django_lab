@@ -25,12 +25,19 @@
     </div>
     {% endblock %}
 
-    <h5>Cart</h5>
-    {% comment %}
-    <a href="{% url 'cart' %}">
-        Cart <span id="cart-count">{{ cart_count }}</span>
-    </a>
-    {% endcomment %}
+    <div class="cart">
+        {% with total_items=cart|length %}
+        {% if cart|length > 0 %}
+        Your cart:
+        <a href="{% url 'cart_detail' %}">
+            {{ total_items }} item{{ total_items|pluralize }},
+            ${{ cart.get_total_price }}
+        </a>
+        {% else %}
+        Your cart is empty.
+        {% endif %}
+        {% endwith %}
+    </div>
     {% if user.is_authenticated %}
     <form method="post" action="{% url 'logout' %}">
         {% csrf_token %}

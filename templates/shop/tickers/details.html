@@ -57,7 +57,11 @@
             <td>{{ option.volume }}</td>
             <td>{{ option.expiration_date }}</td>
             <td>
-                <button type="submit">Add to cart</button>
+                <form action="{% url 'cart_add' option.id %}" method="post">
+                {{ cart_product_form }}
+                {% csrf_token %}
+                <input type="submit" value="Add to cart">
+                </form>
             </td>
         </tr>
         {% endfor %}

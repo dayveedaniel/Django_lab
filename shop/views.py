@@ -1,6 +1,8 @@
 from django.shortcuts import get_object_or_404, render
 from django.views.generic.list import ListView
-from shop.models import Customer, Order, Ticker, Product
+
+from cart.form import CartAddProductForm
+from shop.models import Customer, Order, Ticker
 
 
 # Create your views here.
@@ -22,7 +24,8 @@ class HomePageView(ListView):
 def ticker_details(request, slug):
     ticker = get_object_or_404(Ticker, slug=slug)
     options = ticker.tickers.all()
-    context = {'ticker': ticker, 'options': options}
+    cart_product_form = CartAddProductForm()
+    context = {'ticker': ticker, 'options': options, 'cart_product_form': cart_product_form}
     return render(request, 'shop/tickers/details.html', context)
 
 
