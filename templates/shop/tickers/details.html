@@ -4,7 +4,6 @@
 {% endblock %}
 
 {% block content %}
-<div class="ticker-details-container">
     <div class="ticker-header">
         <h2>{{ ticker.full_name }} ({{ ticker.name }})</h2>
         <p>Company Rating: {{ ticker.rating }}</p>
@@ -47,8 +46,8 @@
         <tbody>
         {% for option in options %}
         <tr class="ticker-item">
-            <td class="option-type">{{ option.option_type }}</td>
-            <td class="ticker-name">{{ option.name }}</td>
+            <td><div class="option-type {% if option.option_type == 'Call' %}call{% else %}put{% endif %}">{{ option.option_type }}</div> </td>
+            <td><div class="ticker-name">{{ option.name }}</div></td>
             <td>{{ option.strike }}</td>
             <td>{{ option.open }}</td>
             <td>{{ option.close }}</td>
@@ -67,6 +66,5 @@
         {% endfor %}
         </tbody>
     </table>
-</div>
 
 {% endblock %}

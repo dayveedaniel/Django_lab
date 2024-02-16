@@ -82,8 +82,9 @@ header a:hover {
 
 .container {
     display: flex;
-    flex-direction: column;
     align-items: center;
+    width: 100%;
+    margin-top: 20px; /* Adjust as needed */
 }
 
 .sidebar {
@@ -91,10 +92,8 @@ header a:hover {
 }
 
 .content-wrapper {
-    display: flex;
-    max-width: 1200px; /* Adjust as needed */
-    width: 100%;
-    margin-top: 20px; /* Adjust as needed */
+    margin: 10px auto;
+    padding: 20px;
 }
 
 .main-body {

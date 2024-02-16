@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.shortcuts import get_object_or_404, render
 from django.views.generic.list import ListView
 
@@ -16,7 +17,7 @@ class HomePageView(ListView):
         search_query = self.request.GET.get('search_query')
 
         if search_query:
-            queryset = queryset.filter(name__icontains=search_query)
+            queryset = queryset.filter(Q(name__icontains=search_query) | Q(full_name__icontains=search_query))
 
         return queryset
 
