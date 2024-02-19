@@ -1,0 +1,45 @@
+.order-form p{
+    margin-bottom: 20px;
+}
+
+.order-form{
+    width: 50%;
+}
+
+.order-form p input{
+ height:34px;
+ width: 100%;
+ display: inline-block;
+ border: 1px solid #ccc;
+ border-radius: 4px;
+ box-sizing: border-box;
+  padding: 10px 10px;
+
+}
+
+.order-form input[type=submit]{
+ width: 50%;
+  background-color: blue;
+  color: white;
+  padding: 14px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size:16px;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.order-form input[type=submit]:hover {
+  background-color: #4A4AF7;
+  cursor: pointer;
+}
+
+
+.order-info {
+    margin-bottom: 40px;
+}
+.order-info p{
+    font-weight: bold;
+}

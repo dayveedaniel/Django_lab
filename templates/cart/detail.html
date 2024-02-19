@@ -41,6 +41,8 @@
 </table>
 <p class="text-right">
     <a href="{{request.META.HTTP_REFERER|escape}}" class="button light">Continue shopping</a>
-    <a href="#" class="button">Checkout</a>
+    <a href="{% url 'order_create' %}" class="button">
+    Checkout
+</a>
 </p>
 {% endblock %}
