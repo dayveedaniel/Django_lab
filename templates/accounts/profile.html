@@ -4,17 +4,40 @@
 {% endblock %}
 {% block content %}
 
+<link rel="stylesheet" href="../../static/css/order.css">
+
 <h1>{{ user.username }}'s Profile</h1>
 <p>Email: {{ user.email }}</p>
 
-<h2>Orders</h2>
-<ul>
-  {% for order in orders %}
-    <li>
-      Order ID: {{ order.id }}
-      - Date: {{ order.created }}
-      - Total: {{ order.get_total_cost }}
-    </li>
-  {% endfor %}
-</ul>
+<div class="order-history">
+    <h2>Order History</h2>
+    <p>Check the status of recent orders, manage returns, and discover similar products</p>
+
+    {% for order in orders %}
+    <div class="order-details">
+        <div class="order-header">
+            <span class="order-number">Order Number: {{ order.id }}</span>
+            <span class="order-date">Date Placed: {{ order.created }}</span>
+            <span class="order-total">Total Amount: {{ order.get_total_cost }}</span>
+            <button class="btn view-order">View Order</button>
+            <button class="btn view-invoice">View Invoice</button>
+        </div>
+
+        {% for product in order.items.product %}
+        <div class="product-item">
+            <img src="{{ product.image_url }}" alt="{{ product.name }}">
+            <div class="product-info">
+                <h3>{{ product.name }}</h3>
+                <p>{{ product.volume }}</p>
+            </div>
+            <div class="product-price">{{ product.strike }}</div>
+            <div class="product-actions">
+                <button class="btn view-product">View Product</button>
+                <button class="btn buy-again">Buy Again</button>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endfor %}
+</div>
 {% endblock %}

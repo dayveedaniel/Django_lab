@@ -28,7 +28,14 @@ def order_create(request):
                                          quantity=item['quantity'])
             # очистка корзины
             cart.clear()
-            message = 'Your order has been successfully created \n \n Order Details \n '
+            message = f'''Your order has been successfully created \n \n Order Details \n
+        - Order ID: {order.id}
+        - Date: {order.created}
+        - Address: {order.city}
+        - Total: {order.address}, {order.city}
+        
+        Thank you for your order
+      '''
             send_mail(f'Order from AI options on {order.created}', message, None, [order.email])
             return render(request, 'orders/order/created.html',
                           {'order': order})
