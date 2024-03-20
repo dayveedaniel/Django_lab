@@ -84,11 +84,16 @@ header a:hover {
     display: flex;
     align-items: center;
     width: 100%;
-    margin-top: 20px; /* Adjust as needed */
+    margin-top: 20px;
 }
 
 .sidebar {
-    width: 28%; /* Adjust as needed */
+    width: 28%;
+}
+
+.sidebar.filter-item {
+    display: block;
+    margin-bottom: 15px;
 }
 
 .content-wrapper {
@@ -97,7 +102,7 @@ header a:hover {
 }
 
 .main-body {
-    width: 70%; /* Adjust as needed */
+    width: 70%;
 }
 
 .ticker-item {

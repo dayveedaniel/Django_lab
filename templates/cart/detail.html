@@ -25,7 +25,11 @@
         </td>
         <td>{{ product.category.name }}</td>
         <td>{{ product.name }}</td>
-        <td>{{ item.quantity }}</td>
+        <td>
+            <a href="{% url 'cart_update_quantity' product.id 'decrease' %}">-</a>
+            {{ item.quantity }}
+            <a href="{% url 'cart_update_quantity' product.id 'increase' %}">+</a>
+        </td>
         <td><a href="{% url 'cart_remove' product.id%}">Remove</a></td>
         <td class="num">${{ item.price }}</td>
         <td class="num">${{ item.total_price }}</td>
@@ -39,10 +43,16 @@
     </tr>
     </tbody>
 </table>
-<p class="text-right">
-    <a href="{{request.META.HTTP_REFERER|escape}}" class="button light">Continue shopping</a>
+<p class="text-right" style="padding-top: 20px">
+    {% if cart|length < 1 %}
+    Cart is empty
+    {% endif %}
+    <!--    <a href="{{request.META.HTTP_REFERER|escape}}" class="button light">Continue shopping</a>-->
+    <a href="{% url 'home' %}" class="button light">Continue shopping</a>
     {% if user.is_authenticated %}
+    {% if cart|length > 0 %}
     <a href="{% url 'order_create' %}" class="button">Checkout</a>
+    {% endif %}
     {% else %}
     <a href="{% url 'login' %}?next=/orders/create/" class="button">Checkout</a>
     {% endif %}

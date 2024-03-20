@@ -1,6 +1,9 @@
 # Create your views here.
 from django.contrib.auth.decorators import login_required
+from django.core.mail import send_mail
 from django.shortcuts import render, redirect
+
+from accounts.views import user_profile
 from .models import OrderItem
 from .forms import OrderCreateForm
 from cart.cart import Cart
@@ -9,6 +12,9 @@ from cart.cart import Cart
 @login_required
 def order_create(request):
     cart = Cart(request)
+    if cart.__len__() < 1:
+        return user_profile(request)
+
     if request.method == 'POST':
         form = OrderCreateForm(request.POST)
         if form.is_valid():
@@ -22,9 +28,17 @@ def order_create(request):
                                          quantity=item['quantity'])
             # очистка корзины
             cart.clear()
+            message = 'Your order has been successfully created \n \n Order Details \n '
+            send_mail(f'Order from AI options on {order.created}', message, None, [order.email])
             return render(request, 'orders/order/created.html',
                           {'order': order})
     else:
-        form = OrderCreateForm
+        user = request.user
+        initial_data = {
+            'first_name': user.first_name,
+            'last_name': user.last_name,
+            'email': user.email,
+        }
+        form = OrderCreateForm(initial=initial_data)
     return render(request, 'orders/order/create.html',
                   {'cart': cart, 'form': form})

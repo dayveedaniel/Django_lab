@@ -15,6 +15,19 @@ class HomePageView(ListView):
     def get_queryset(self):
         queryset = super().get_queryset()
         search_query = self.request.GET.get('search_query')
+        is_trading_filter = self.request.GET.get('isTrading')
+        sort_filter = self.request.GET.get('sort')
+
+        # Apply filters based on user selection
+        if is_trading_filter:
+            queryset = queryset.filter(is_trading=is_trading_filter)
+        if sort_filter:
+            # Example sorting logic fr volume:
+            if sort_filter == "volume_asc":
+                queryset = queryset.order_by('volume')
+            elif sort_filter == "volume_desc":
+                queryset = queryset.order_by('-volume')
+            pass
 
         if search_query:
             queryset = queryset.filter(Q(name__icontains=search_query) | Q(full_name__icontains=search_query))

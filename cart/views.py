@@ -28,15 +28,15 @@ def cart_remove(request, product_id):
     return redirect('cart_detail')
 
 
-def cart_update_quantity(request, product_id):
+def cart_update_quantity(request, product_id, action):
     cart = Cart(request)
     product = get_object_or_404(Product, id=product_id)
-    form = CartAddProductForm(request.POST)
-    if form.is_valid():
-        cd = form.cleaned_data
-        cart.update_quantity(product=product,
-                             quantity=cd['quantity']
-                             )
+    quantity = cart.cart.get(str(product_id), {}).get('quantity', 0)
+    if action == 'increase':
+        cart.update_quantity(product=product, quantity=quantity + 1)
+    elif action == 'decrease':
+        if quantity > 1:
+            cart.update_quantity(product=product, quantity=quantity - 1)
     return redirect('cart_detail')
 
 
