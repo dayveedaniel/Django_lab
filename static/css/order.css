@@ -1,52 +1,6 @@
-.order-form p{
-    margin-bottom: 20px;
-}
-
-.order-form{
-    width: 50%;
-}
-
-.order-form p input{
- height:34px;
- width: 100%;
- display: inline-block;
- border: 1px solid #ccc;
- border-radius: 4px;
- box-sizing: border-box;
- padding: 10px 10px;
-}
-
-.order-form input[type=submit]{
- width: 50%;
-  background-color: blue;
-  color: white;
-  padding: 14px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size:16px;
-  display: block;
-  margin-right: auto;
-  margin-left: auto;
-}
-
-.order-form input[type=submit]:hover {
-  background-color: #4A4AF7;
-  cursor: pointer;
-}
-
-
-.order-info {
-    margin-bottom: 40px;
-}
-.order-info p{
-    font-weight: bold;
-}
-
 .order-history {
-    max-width: 800px;
+    max-width: 900px;
     margin: 0 auto;
-    margin-top: 40px;
     font-family: Arial, sans-serif;
 }
 
@@ -90,17 +44,33 @@
 
 .btn {
     padding: 5px 10px;
-    background-color: #4CAF50;
+    background-color: #167D7F;
     color: white;
     border: none;
     border-radius: 3px;
     cursor: pointer;
     margin-right: 5px;
 }
+.btn.make-payment {
+    height:32px;
+    font-weight: bold;
+    border-radius: 3px;
+    transition: box-shadow 0.5s ease;
+    background-color: #4CAF50;
+}
+
+.btn.make-payment:hover {
+  box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.4);
+}
+
+.btn.make-payment:focus {
+  box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.4);
+}
 
 .status {
     font-weight: bold;
     margin-left: 20px;
+    margin-right: 20px;
 }
 
 .status.delivered {
@@ -109,4 +79,60 @@
 
 .status.pending {
     color: orange;
+}
+
+.user-profile {
+    max-width: 900px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.profile-picture img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 20px;
+}
+
+.profile-details h2 {
+    margin-top: 0;
+}
+
+.order-total {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+.total-label {
+    margin-right: 10px;
+}
+
+.profile-picture {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+    background-color:#008080 ;
+}
+
+.profile-initial {
+    font-size: 2rem;
+    font-weight: bold;
+    color: white;
 }

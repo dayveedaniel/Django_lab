@@ -4,40 +4,66 @@
 {% endblock %}
 {% block content %}
 
-<link rel="stylesheet" href="../../static/css/order.css">
 
-<h1>{{ user.username }}'s Profile</h1>
-<p>Email: {{ user.email }}</p>
+<link rel="stylesheet" href="{% static 'css/order.css' %}">
+<link rel="stylesheet" href="{% static 'css/payment_popup.css' %}">
 
-<div class="order-history">
-    <h2>Order History</h2>
-    <p>Check the status of recent orders, manage returns, and discover similar products</p>
+{% include "payment/payment_popup.html" %}
 
-    {% for order in orders %}
-    <div class="order-details">
-        <div class="order-header">
-            <span class="order-number">Order Number: {{ order.id }}</span>
-            <span class="order-date">Date Placed: {{ order.created }}</span>
-            <span class="order-total">Total Amount: {{ order.get_total_cost }}</span>
-            <button class="btn view-order">View Order</button>
-            <button class="btn view-invoice">View Invoice</button>
+<div class="user-profile">
+    <div class="profile-header">
+        <div class="profile-picture">
+            <span class="profile-initial">{{ user.username|make_list|first }}</span>
         </div>
+        <div class="profile-details">
+            <h2>{{ user.username }}'s Profile</h2>
+            <p>Email: {{ user.email }}</p>
+        </div>
+    </div>
 
-        {% for product in order.items.product %}
-        <div class="product-item">
-            <img src="{{ product.image_url }}" alt="{{ product.name }}">
-            <div class="product-info">
-                <h3>{{ product.name }}</h3>
-                <p>{{ product.volume }}</p>
+    <div class="order-history">
+        <h3>Order History</h3>
+        <p>Check the status of recent orders, manage returns, and discover similar products</p>
+
+        {% for order in orders %}
+        <div class="order-details">
+            <div class="order-header">
+                <span class="order-number">Order Number: {{ order.id }}</span>
+                <span class="order-date">Date Placed: {{ order.created }}</span>
             </div>
-            <div class="product-price">{{ product.strike }}</div>
-            <div class="product-actions">
-                <button class="btn view-product">View Product</button>
-                <button class="btn buy-again">Buy Again</button>
+
+            {% for item in order.items.all %}
+            <div class="product-item">
+                <img src="{{ item.product.category.image.url }}" alt="{{ item.product.category.name }} Image">
+                <div class="product-info">
+                    <h4>{{ item.product.name }}</h4>
+                    <p>Price: {{ item.get_cost }}</p>
+                </div>
+                <div class="product-price"> {{ item.quantity }} * {{ item.price }}</div>
+                <div class="product-actions">
+                    <button class="btn view-product">View Product</button>
+                    <button class="btn leave-review">Leave Review</button>
+                </div>
             </div>
+            {% endfor %}
+            <div class="order-total">
+                <span class="total-label">Total Amount:</span>
+                <span class="total-amount">{{ order.get_total_cost }}</span>
+                <div class="product-status">
+                    {% if product.delivered %}
+                    <span class="status delivered">Delivered On {{ product.delivered_date }}</span>
+                    {% else %}
+                    <span class="status pending">UnPaid</span>
+                    {% endif %}
+                </div>
+                <button class="btn make-payment">Make Payment</button>
+            </div>
+
+
         </div>
         {% endfor %}
     </div>
-    {% endfor %}
 </div>
+<script src="{% static 'js/payment_popup.js' %}"></script>
+
 {% endblock %}
