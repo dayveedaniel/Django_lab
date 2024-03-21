@@ -50,16 +50,16 @@
                 <span class="total-label">Total Amount:</span>
                 <span class="total-amount">{{ order.get_total_cost }}</span>
                 <div class="product-status">
-                    {% if product.delivered %}
-                    <span class="status delivered">Delivered On {{ product.delivered_date }}</span>
+                    {% if order.paid %}
+                    <span class="status delivered">Payment Completed</span>
                     {% else %}
                     <span class="status pending">UnPaid</span>
                     {% endif %}
                 </div>
-                <button class="btn make-payment">Make Payment</button>
+                <button class="btn make-payment" data-total="{{ order.get_total_cost }}" data-id="{{ order.id }}">Make
+                    Payment
+                </button>
             </div>
-
-
         </div>
         {% endfor %}
     </div>

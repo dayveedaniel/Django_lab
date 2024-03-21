@@ -10,6 +10,23 @@ var qrPaymentForm = document.getElementById("qrPaymentForm");
 // When the user clicks the "Make Payment" button, open the popup
 makePaymentBtns.forEach(function(btn) {
   btn.onclick = function() {
+
+ const orderId = btn.dataset.id;
+ const orderTotal = btn.dataset.total;
+
+    // Set the order details as properties of the global variable
+  window.orderDetails = {
+      orderId: orderId,
+      orderTotal: orderTotal
+    };
+
+// Display the order details
+const orderIdElement = document.getElementById("popup_orderId");
+const orderTotalElement = document.getElementById("popup_price");
+
+orderIdElement.textContent = `Order ID: ${orderId}`;
+orderTotalElement.textContent = `Total Amount: ${orderTotal}`;
+
     paymentPopup.style.display = "block";
   }
 });

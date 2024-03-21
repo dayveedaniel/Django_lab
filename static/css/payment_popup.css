@@ -16,8 +16,7 @@
   padding: 20px;
   border: 1px solid #888;
   position: relative;
-  width: 50%; /* Adjust width as needed */
-  height: 50%;
+  width: 50%;
 }
 
 .close-btn {

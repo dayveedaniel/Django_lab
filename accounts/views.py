@@ -17,8 +17,10 @@ class SignUp(generic.CreateView):
 
 @login_required
 def user_profile(request):
+    print('hereee')
     current_user = request.user
     orders = Order.objects.filter(user=current_user)
+
     card_form = PaymentForm()
     context = {
         'user': current_user,
