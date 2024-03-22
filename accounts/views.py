@@ -9,6 +9,8 @@ from django.views.decorators.http import require_POST
 
 from orders.forms import PaymentForm
 from orders.models import Order
+from shop.forms import ReviewForm
+from shop.models import Review, Product
 
 
 class SignUp(generic.CreateView):
@@ -21,22 +23,19 @@ class SignUp(generic.CreateView):
 def user_profile(request):
     current_user = request.user
     orders = Order.objects.filter(user=current_user)
-    if request.method == 'POST':
-        form = PaymentForm(request.POST)
-        print(form)
     card_form = PaymentForm()
+    review_form = ReviewForm()
     context = {
         'user': current_user,
         'orders': orders,
         'form': card_form,
+        'review_form': review_form,
     }
     return render(request, 'accounts/profile.html', context)
 
 
 @require_POST
 def complete_payment(request, order_id):
-    print(request)
-    print(request.POST)
     order = get_object_or_404(Order, id=order_id)
     order.paid = True
     order.save()
@@ -49,4 +48,19 @@ def complete_payment(request, order_id):
     Thank you for your Payment
           '''
     send_mail(f'Payment from AI options', message, None, [order.email])
+    return redirect('profile')
+
+
+@require_POST
+def add_review(request, product_id):
+    print(request)
+    print(request.POST)
+    product = get_object_or_404(Product, id=product_id)
+    form = ReviewForm(request.POST)
+    if form.is_valid():
+        review = form.save(commit=False)  # Don't save immediately
+        review.user = request.user  # Assign the current user to the order
+        review.product = product  # Assign the current user to the order
+        review.save()
+
     return redirect('profile')

@@ -44,7 +44,7 @@
                 <div class="product-price"> {{ item.quantity }} * {{ item.price }}</div>
                 <div class="product-actions">
                     <button class="btn view-product" onclick="window.location='{% url 'details' slug=item.product.category.slug %}';">View Product</button>
-                    <button class="btn leave-review">Leave Review</button>
+                    <button class="btn leave-review" data-id="{{ item.product.id }}" data-name="{{ item.product.name }}" >Leave Review</button>
                 </div>
             </div>
             {% endfor %}

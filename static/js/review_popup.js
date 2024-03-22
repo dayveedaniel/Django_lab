@@ -7,7 +7,18 @@ var closeBtn = document.querySelector(".close-btn-re");
 // When the user clicks the "Leave review" button, open the popup
 leaveReviewBtn.forEach(function(btn) {
     btn.onclick = function() {
-        reviewPopup.style.display = "block";
+     const productId = btn.dataset.id;
+     const productName = btn.dataset.name;
+     const popup_form1 = document.getElementById("review-form");
+
+     //
+    const reviewElement = document.getElementById("review-h2");
+    reviewElement.textContent = `Leave a Review for ${productName}`;
+
+
+     popup_form1.action = "review/add/" + productId + "/"
+
+     reviewPopup.style.display = "block";
     }
 })
 

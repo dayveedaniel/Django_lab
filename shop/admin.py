@@ -1,5 +1,5 @@
 from django.contrib import admin
-from shop.models import Customer, Order
+from shop.models import Customer, Order, Review
 
 from django.contrib import admin
 from .models import Ticker, Product
@@ -37,4 +37,7 @@ class ReviewAdmin(admin.ModelAdmin):
     list_display = ['user', 'comment', 'rate', 'product', 'created_at']
     list_filter = ['comment', 'rate', 'user', 'product']
     list_editable = ['comment', 'rate', 'user', 'product']
-    prepopulated_fields = {'slug': ('name',)}
+    list_display_links = None
+
+
+admin.site.register(Review, ReviewAdmin)
