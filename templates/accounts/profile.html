@@ -7,8 +7,10 @@
 
 <link rel="stylesheet" href="{% static 'css/order.css' %}">
 <link rel="stylesheet" href="{% static 'css/payment_popup.css' %}">
+<link rel="stylesheet" href="{% static 'css/review_popup.css' %}">
 
 {% include "payment/payment_popup.html" %}
+{% include "review/review_popup.html" %}
 
 <div class="user-profile">
     <div class="profile-header">
@@ -41,7 +43,7 @@
                 </div>
                 <div class="product-price"> {{ item.quantity }} * {{ item.price }}</div>
                 <div class="product-actions">
-                    <button class="btn view-product">View Product</button>
+                    <button class="btn view-product" onclick="window.location='{% url 'details' slug=item.product.category.slug %}';">View Product</button>
                     <button class="btn leave-review">Leave Review</button>
                 </div>
             </div>
@@ -65,5 +67,6 @@
     </div>
 </div>
 <script src="{% static 'js/payment_popup.js' %}"></script>
+<script src="{% static 'js/review_popup.js' %}"></script>
 
 {% endblock %}

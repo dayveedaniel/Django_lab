@@ -31,3 +31,10 @@ class ProductAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Product, ProductAdmin)
+
+
+class ReviewAdmin(admin.ModelAdmin):
+    list_display = ['user', 'comment', 'rate', 'product', 'created_at']
+    list_filter = ['comment', 'rate', 'user', 'product']
+    list_editable = ['comment', 'rate', 'user', 'product']
+    prepopulated_fields = {'slug': ('name',)}

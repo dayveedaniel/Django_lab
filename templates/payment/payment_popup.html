@@ -21,7 +21,7 @@
             </div>
         </div>
         <div id="cardPaymentForm" class="payment-form">
-            <form action="{% url 'profile' %}" method="post" class="order-form" id="form1">
+            <form method="post" class="order-form" id="form1">
                 {{ form.as_p }}
                 {% csrf_token %}
             </form>

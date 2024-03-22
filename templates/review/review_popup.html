@@ -1,0 +1,27 @@
+<div id="reviewPopup" class="popup">
+  <div class="popup-content">
+    <span class="close-btn-re">&times;</span>
+    <h2>Leave a Review</h2>
+    <div class="review-form-container">
+      <div class="review-content">
+        <label for="review-input">What do you think about this product</label>
+        <textarea id="review-input" rows="4" cols="50" maxlength="1000"></textarea>
+      </div>
+      <div class="container col-sm-7">
+    <form action="/product_review">
+        <input type="hidden" name="product_id" id="product_id" value="{{product.id}}">
+        <hr>
+        <h5 style="font-weight:bold">Overall Rating</h5>
+        <div class="stars">
+            <input class="star star-5" id="star-5" type="radio" name="rate" value="5" /> <label class="star star-5" for="star-5"></label> <input class="star star-4" id="star-4" type="radio" name="rate" value="4"/> <label class="star star-4" for="star-4"></label> <input class="star star-3" id="star-3" type="radio" name="rate" value="3"/> <label class="star star-3" for="star-3"></label> <input class="star star-2" id="star-2" type="radio" name="rate" value="2"/> <label class="star star-2" for="star-2"></label> <input class="star star-1" id="star-1" type="radio" name="rate" value="1rate"/> <label class="star star-1" for="star-1"></label>
+        </div>
+    </form>
+</div>
+      <div class="submit-review-container">
+        <button class="proceed-btn" id="submit-review-btn" disabled>
+          Submit review
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

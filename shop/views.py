@@ -47,9 +47,3 @@ class CustomersListView(ListView):
     template_name = "customer.html"
     model = Customer
     context_object_name = "list_of_all_customers"
-
-
-class OrdersListView(ListView):
-    template_name = "orders.html"
-    model = Order
-    context_object_name = "list_of_all_orders"

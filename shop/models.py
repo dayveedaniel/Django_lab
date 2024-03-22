@@ -1,7 +1,7 @@
 # Create your models here.
-
+from django.contrib.auth.models import User
 from django.db import models
-from django.db.models import CheckConstraint, Q
+from django.db.models import CheckConstraint, Q, Avg, Count
 from django.urls import reverse
 
 
@@ -75,6 +75,20 @@ class Product(models.Model):
         return reverse('shop:product_detail',
                        args=[self.id, self.slug])
 
+    def average_review(self):
+        review = Review.objects.filter(product=self).aggregate(avarage=Avg('rate'))
+        avg = 0
+        if review["average"] is not None:
+            avg = float(review["average"])
+        return avg
+
+    def count_review(self):
+        reviews = Review.objects.filter(product=self).aggregate(count=Count('id'))
+        cnt = 0
+        if reviews["count"] is not None:
+            cnt = int(reviews["count"])
+        return cnt
+
     class Meta:
         ordering = ('name',)
         index_together = (('id', 'slug'),)
@@ -86,3 +100,14 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Review(models.Model):
+    user = models.ForeignKey(User, models.CASCADE)
+    product = models.ForeignKey(Product, models.CASCADE, null=True, blank=True)
+    comment = models.TextField(max_length=250, null=True, blank=True)
+    rate = models.IntegerField(default=1)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return str(self.id)

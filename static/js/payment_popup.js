@@ -23,9 +23,11 @@ makePaymentBtns.forEach(function(btn) {
 // Display the order details
 const orderIdElement = document.getElementById("popup_orderId");
 const orderTotalElement = document.getElementById("popup_price");
+const popup_form1 = document.getElementById("form1");
 
 orderIdElement.textContent = `Order ID: ${orderId}`;
 orderTotalElement.textContent = `Total Amount: ${orderTotal}`;
+popup_form1.action = "payment/" + orderId + "/"
 
     paymentPopup.style.display = "block";
   }
