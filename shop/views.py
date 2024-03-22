@@ -3,7 +3,7 @@ from django.shortcuts import get_object_or_404, render
 from django.views.generic.list import ListView
 
 from cart.form import CartAddProductForm
-from shop.models import Customer, Order, Ticker
+from shop.models import Customer, Order, Ticker, Product
 
 
 # Create your views here.
@@ -41,6 +41,13 @@ def ticker_details(request, slug):
     cart_product_form = CartAddProductForm()
     context = {'ticker': ticker, 'options': options, 'cart_product_form': cart_product_form}
     return render(request, 'shop/tickers/details.html', context)
+
+
+def product_details(request, slug):
+    option = get_object_or_404(Product, slug=slug)
+    cart_product_form = CartAddProductForm()
+    context = {'options': option, 'cart_product_form': cart_product_form}
+    return render(request, 'shop/products/product.html', context)
 
 
 class CustomersListView(ListView):

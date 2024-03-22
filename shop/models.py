@@ -1,5 +1,6 @@
 # Create your models here.
 from django.contrib.auth.models import User
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.db.models import CheckConstraint, Q, Avg, Count
 from django.urls import reverse
@@ -106,7 +107,10 @@ class Review(models.Model):
     user = models.ForeignKey(User, models.CASCADE)
     product = models.ForeignKey(Product, models.CASCADE, null=True, blank=True)
     comment = models.TextField(max_length=250, null=True, blank=True)
-    rate = models.IntegerField(default=1)
+    rate = models.IntegerField(default=0, validators=[
+        MaxValueValidator(5),
+        MinValueValidator(0)
+    ])
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

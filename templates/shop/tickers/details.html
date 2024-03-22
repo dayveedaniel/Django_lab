@@ -47,7 +47,7 @@
     </thead>
     <tbody>
     {% for option in options %}
-    <tr class="ticker-item">
+    <tr class="ticker-item" onclick="window.location='{% url 'products' slug=option.slug %}';">
         <td>
             <div class="option-type {% if option.option_type == 'Call' %}call{% else %}put{% endif %}">{{ option.option_type }}
             </div>

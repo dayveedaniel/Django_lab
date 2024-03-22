@@ -62,5 +62,4 @@ def add_review(request, product_id):
         review.user = request.user  # Assign the current user to the order
         review.product = product  # Assign the current user to the order
         review.save()
-
     return redirect('profile')
