@@ -30,6 +30,20 @@ window.onclick = function(event) {
 }
 // When the user clicks the close button, close the popup
 closeBtn.onclick = function() {
-console.log("in bitton")
   reviewPopup.style.display = "none";
 }
+
+   const radioButtons = document.querySelectorAll('input[name="rate"]');
+   const hiddenInput = document.getElementById('id_rate');
+
+    // Loop through each radio button
+    radioButtons.forEach((radioButton) => {
+        // Add event listener for change event
+        radioButton.addEventListener('change', () => {
+            // Check if the radio button is checked
+            if (radioButton.checked) {
+                // Get the value of the checked radio button
+                 hiddenInput.value = radioButton.value;
+            }
+        });
+    });

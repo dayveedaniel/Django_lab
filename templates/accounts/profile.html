@@ -58,9 +58,11 @@
                     <span class="status pending">UnPaid</span>
                     {% endif %}
                 </div>
+                 {% if not order.paid %}
                 <button class="btn make-payment" data-total="{{ order.get_total_cost }}" data-id="{{ order.id }}">Make
                     Payment
                 </button>
+                 {% endif %}
             </div>
         </div>
         {% endfor %}
